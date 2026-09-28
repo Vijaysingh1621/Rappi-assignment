@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Purchasing Agent</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">◆</span>
+    <div>
+      <h1>AI Purchasing Agent</h1>
+      <p class="sub">Investigate → decide → validate → execute → verify</p>
+    </div>
+  </div>
+  <div class="controls">
+    <span id="simDate" class="pill muted"></span>
+    <div class="segmented" role="radiogroup" aria-label="Agent mode">
+      <button data-mode="rules" class="active" title="Deterministic agent, no API key needed">Rules agent</button>
+      <button data-mode="llm" id="llmBtn" title="Claude tool-use agent">Claude agent</button>
+    </div>
+    <button id="resetBtn" class="ghost">Reset data</button>
+  </div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="cases">Cases</button>
+  <button class="tab" data-tab="approvals">Approvals <span id="apprCount" class="count"></span></button>
+  <button class="tab" data-tab="escalations">Escalations <span id="escCount" class="count"></span></button>
+  <button class="tab" data-tab="pos">Purchase orders</button>
+</nav>
+
+<main>
+  <section id="tab-cases" class="tabpane active">
+    <aside id="caseList" class="caselist"></aside>
+    <div id="caseDetail" class="detail">
+      <div class="empty">Select a case to inspect the situation and run the agent.</div>
+    </div>
+  </section>
+  <section id="tab-approvals" class="tabpane"><div id="approvals" class="panel"></div></section>
+  <section id="tab-escalations" class="tabpane"><div id="escalations" class="panel"></div></section>
+  <section id="tab-pos" class="tabpane"><div id="pos" class="panel"></div></section>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+<script src="/static/app.js"></script>
+</body>
+</html>
