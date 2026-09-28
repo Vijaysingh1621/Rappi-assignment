@@ -81,7 +81,7 @@ INVENTORY = [
     ("SKU-7001", "MEX-02", 420, 2000, -2),
     ("SKU-7002", "BOG-01", 300, 1200, -2),
     ("SKU-7003", "SAO-03", 300, 1400, -3),
-    ("SKU-8001", "BOG-01", 100, 900, -4),
+    ("SKU-8001", "BOG-01", 190, 900, -4),
     ("SKU-8002", "MEX-02", 100, 200, -1),
     ("SKU-8003", "BOG-01", 20, 150, -2),
 ]
@@ -117,7 +117,7 @@ SUPPLIER_PRODUCTS = [
     ("SUP-G", "SKU-6001", 4.40, 24, 12, 3, 0, 1, 1000),
     ("SUP-X", "SKU-6001", 3.20, 12, 12, 1, 0, 1, 5000),   # cheapest, but blocked
     ("SUP-H", "SKU-6002", 14.00, 100, 10, 7, 1, 1, 0),
-    ("SUP-I", "SKU-6002", 15.20, 50, 10, 2, 0, 1, 120),   # catalogue looks fine; can only ship 120
+    ("SUP-I", "SKU-6002", 15.20, 50, 10, 5, 0, 1, 60),    # catalogue looks fine; can only ship 60
     ("SUP-J", "SKU-6002", 16.10, 20, 10, 4, 0, 1, 500),
     ("SUP-B", "SKU-6003", 6.00, 60, 12, 5, 1, 1, 0),
     ("SUP-K", "SKU-6003", 8.70, 24, 12, 9, 0, 1, 1000),   # +45% premium and slow
@@ -171,7 +171,7 @@ RECOMMENDATIONS = [
      "Seasonal uplift model (Q4 pantry stock-up) applied to last year's peak."),
     ("REC-4001", "SKU-4001", "BOG-01", "SUP-B", 800,
      "Forecast-driven replenishment: 60 units/day forecast, bulk order for freight efficiency."),
-    ("REC-8001", "SKU-8001", "BOG-01", "SUP-N", 540,
+    ("REC-8001", "SKU-8001", "BOG-01", "SUP-N", 444,
      "Order-up-to policy: 11 days of forecast + 3 days safety stock minus inventory position."),
     ("REC-8002", "SKU-8002", "MEX-02", "SUP-R", 260,
      "Order-up-to policy: 10 days of forecast + 2 days safety stock minus inventory position."),
@@ -234,7 +234,7 @@ CASES = [
      "SKU-7003", "SAO-03", None, "PO-7003", {"type": "sales_alert", "forecast_daily": 40}),
     # --- Scenario 4: purchasing constraints ---
     ("CASE-S4-A", "purchasing_constraint", "Shampoo replenishment vs. remaining budget",
-     "The replenishment system recommends 540 units of Head & Shoulders for BOG-01.",
+     "The replenishment system recommends 444 units of Head & Shoulders for BOG-01.",
      "SKU-8001", "BOG-01", "REC-8001", None, None),
     ("CASE-S4-B", "purchasing_constraint", "Toilet paper replenishment vs. storage space",
      "The replenishment system recommends 260 units of Papel Familia x12 for MEX-02.",
