@@ -273,7 +273,9 @@ def evaluate_supplier(ctx: ItemContext, sup: dict, need: int | None = None,
     if arrives_after_stockout:
         issues.append(f"arrives day {L}, after projected stockout on day {baseline['first_stockout_day']}")
 
-    hard = [i for i in issues if "split delivery possible" not in i and "after projected stockout" not in i]
+    # Storage overflow and late arrival are handled by the planner (split / escalate);
+    # everything else makes the supplier unusable for this quantity.
+    hard = [i for i in issues if "free storage" not in i and "after projected stockout" not in i]
     return {
         "supplier_id": sup["supplier_id"],
         "supplier_name": sup["name"],
@@ -296,7 +298,8 @@ def evaluate_supplier(ctx: ItemContext, sup: dict, need: int | None = None,
         "split_delivery_plan": [{"day": a.day, "qty": a.qty} for a in split] if split else None,
         "arrives_after_projected_stockout": arrives_after_stockout,
         "issues": issues,
-        "feasible": qty > 0 and not hard,
+        "feasible": qty > 0 and not hard and qty <= room,
+        "feasible_with_split": qty > 0 and not hard and bool(split),
     }
 
 
